@@ -29,3 +29,6 @@ jobs:
 
       - name: Lint & Check
         run: pnpm lint && pnpm check
+
+      - name: Run Tests
+        run: pnpm test

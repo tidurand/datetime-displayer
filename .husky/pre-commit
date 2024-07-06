@@ -1,1 +1,1 @@
-echo 'Running pre-commit hook...' && pnpm lint && pnpm check
+echo 'Running pre-commit hook...' && pnpm lint && pnpm check && pnpm test

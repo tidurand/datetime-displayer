@@ -6,7 +6,7 @@ import prettier from "eslint-plugin-prettier";
 
 export default [
   {
-    files: ["src/**/*.{ts,js}"],
+    files: ["src/**/*.{ts,js}", "test/**/*.{ts,js}"],
     rules: {
       'prettier/prettier': 'error',
     },
@@ -15,7 +15,7 @@ export default [
   },
   {
     ...pluginJs.configs.recommended,
-    files: ["src/**/*.{ts,js}"],
+    files: ["src/**/*.{ts,js}", "test/**/*.{ts,js}"],
   },
   ...tseslint.configs.recommended.map(config => ({
     ...config,
