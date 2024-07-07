@@ -7,8 +7,8 @@ describe('global tests', () => {
     const element = document.createElement('div');
     element.setAttribute(DISPLAY_TIME_ATTRIBUTE, 'true');
 
-    const { date, locale, timeZone, hour12 } = parseDateTimeAttributes(element)
-    const result = formatDateTime(element, date, locale, timeZone, hour12);
+    const { date, locale, timeZone, isHour12 } = parseDateTimeAttributes(element)
+    const result = formatDateTime(element, date, locale, timeZone, isHour12);
 
     expect(result).toEqual(new Intl.DateTimeFormat().format(Date.now()))
   });
@@ -18,8 +18,8 @@ describe('global tests', () => {
     element.setAttribute(DISPLAY_TIME_ATTRIBUTE, 'true');
     element.setAttribute('time-zone', 'America/New_York');
 
-    const { date, locale, timeZone, hour12 } = parseDateTimeAttributes(element)
-    const result = formatDateTime(element, date, locale, timeZone, hour12);
+    const { date, locale, timeZone, isHour12 } = parseDateTimeAttributes(element)
+    const result = formatDateTime(element, date, locale, timeZone, isHour12);
 
     expect(result).toEqual(new Intl.DateTimeFormat(locale, {timeZone: 'America/New_York'}).format(Date.now()))
   });
@@ -33,8 +33,8 @@ describe('global tests', () => {
     element.setAttribute('format-hour', '2-digit');
     element.setAttribute('format-minute', '2-digit');
 
-    const { date, locale, timeZone, hour12 } = parseDateTimeAttributes(element)
-    const result = formatDateTime(element, date, locale, timeZone, hour12);
+    const { date, locale, timeZone, isHour12 } = parseDateTimeAttributes(element)
+    const result = formatDateTime(element, date, locale, timeZone, isHour12);
 
     const options: Intl.DateTimeFormatOptions = {
       year: 'numeric',

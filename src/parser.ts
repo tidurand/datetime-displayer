@@ -12,12 +12,10 @@ const isValidDate = (date: string) => {
 const getDate = (element: HTMLElement) => {
   const dateAttribute = element.getAttribute(DATE_ATTRIBUTE)
 
-  if (dateAttribute) {
-    if (!isValidDate(dateAttribute)) throw new Error('Invalid date attribute')
-    return new Date(dateAttribute)
-  } else {
-    return new Date()
-  }
+  if (dateAttribute && !isValidDate(dateAttribute))
+    throw new Error('Invalid date attribute')
+
+  return new Date(dateAttribute || Date.now())
 }
 
 export const parseDateTimeAttributes = (element: HTMLElement) => {
@@ -28,7 +26,7 @@ export const parseDateTimeAttributes = (element: HTMLElement) => {
 
   const locale = element.getAttribute(LOCALE_ATTRIBUTE) || userLocale
   const timeZone = element.getAttribute(TIME_ZONE_ATTRIBUTE) || userTimeZone
-  const hour12 = element.getAttribute(HOUR12_ATTRIBUTE) === 'true'
+  const isHour12 = element.getAttribute(HOUR12_ATTRIBUTE) === 'true'
 
-  return { date, locale, timeZone, hour12 }
+  return { date, locale, timeZone, isHour12 }
 }

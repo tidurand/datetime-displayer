@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { FORMAT_OPTIONS, SHOW_ATTRIBUTE } from './attributes'
 
 const getDisplayedOptions = (element: HTMLElement) => {
@@ -14,8 +13,6 @@ const getFormatAttributes = (element: HTMLElement) => {
 
   FORMAT_OPTIONS.forEach((option) => {
     const formatValue = element.getAttribute(`format-${option}`)
-    //narrow short long numeric 2-digit
-
     if (formatValue) {
       options[option] = formatValue
     }
@@ -28,19 +25,13 @@ export const buildFormatOptions = (element: HTMLElement) => {
   const displayed = getDisplayedOptions(element)
   const format = getFormatAttributes(element)
 
-  const options = displayed.reduce(
+  return displayed.reduce(
     (acc, key) => {
-      if (format[key]) {
-        acc[key] = format[key]
-      } else {
-        acc[key] = 'numeric'
-      }
+      acc[key] = format[key] || 'numeric'
       return acc
     },
     {} as { [key: string]: string },
   )
-
-  return options
 }
 
 export const formatDateTime = (

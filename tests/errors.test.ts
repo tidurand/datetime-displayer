@@ -9,8 +9,8 @@ describe('typing errors in attributes', () => {
     element.setAttribute('date', 'toto');
 
     const testCall = () => {
-      const { date, locale, timeZone, hour12 } = parseDateTimeAttributes(element);
-      formatDateTime(element, date, locale, timeZone, hour12);
+      const { date, locale, timeZone, isHour12 } = parseDateTimeAttributes(element);
+      formatDateTime(element, date, locale, timeZone, isHour12);
     };
 
     expect(testCall).toThrow('Invalid date attribute');
