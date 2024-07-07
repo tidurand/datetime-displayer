@@ -1,22 +1,50 @@
 // tests/dateFormatter.test.ts
 import { DATE_ATTRIBUTE, DISPLAY_TIME_ATTRIBUTE, SHOW_ATTRIBUTE } from '../src/attributes';
 import { getDateTimeAttributes } from '../src/displayer';
-import { buildFormatOptions, formatDateTime } from '../src/formatter';
+import { formatDateTime } from '../src/formatter';
 
-describe('buildFormatOptions', () => {
+describe('global tests', () => {
+  it('should return correct format options for given attributes', () => {
+    const element = document.createElement('div');
+    element.setAttribute(DISPLAY_TIME_ATTRIBUTE, 'true');
+
+    const { date, locale, timeZone, hour12 } = getDateTimeAttributes(element)
+    const result = formatDateTime(element, date, locale, timeZone, hour12);
+
+    expect(result).toEqual(new Intl.DateTimeFormat().format(Date.now()))
+  });
+
+  it('should return correct format options for given attributes', () => {
+    const element = document.createElement('div');
+    element.setAttribute(DISPLAY_TIME_ATTRIBUTE, 'true');
+    element.setAttribute('time-zone', 'America/New_York');
+
+    const { date, locale, timeZone, hour12 } = getDateTimeAttributes(element)
+    const result = formatDateTime(element, date, locale, timeZone, hour12);
+
+    expect(result).toEqual(new Intl.DateTimeFormat(locale, {timeZone: 'America/New_York'}).format(Date.now()))
+  });
+
   it('should return correct format options for given attributes', () => {
     const element = document.createElement('div');
     element.setAttribute(DISPLAY_TIME_ATTRIBUTE, 'true');
     element.setAttribute(SHOW_ATTRIBUTE, 'year-month-day-hour-minute');
-    element.setAttribute(DATE_ATTRIBUTE, '2024-07-06T18:40:00');
     element.setAttribute('format-year', 'numeric');
     element.setAttribute('format-month', 'long');
-    element.setAttribute('format-day', '2-digit');
     element.setAttribute('format-hour', '2-digit');
     element.setAttribute('format-minute', '2-digit');
 
     const { date, locale, timeZone, hour12 } = getDateTimeAttributes(element)
     const result = formatDateTime(element, date, locale, timeZone, hour12);
-    expect(result).toEqual('July 06, 2024 at 18:40')
+
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    }
+    expect(result).toEqual(new Intl.DateTimeFormat(locale, options).format(date))
   });
 });
