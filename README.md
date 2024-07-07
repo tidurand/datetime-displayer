@@ -28,6 +28,10 @@ Add this attribute to the elements where you want to display the date and time.
 ### `date`
 Use this attribute if you want to display a specific date. If not provided, the element will display the real-time date and time.
 
+Currently, you can une only this format `YYYY-MM-DDTHH:mm:ss.sssZ`
+
+Examples: `date="2024-07-07T12:00:00Z"`, `date="2024-07-07"`
+
 ### `show`
 This attribute specifies which parts of the date and time to display. You can use any combination of the following, separated by hyphens:
 - `weekday`
@@ -53,8 +57,12 @@ Use this attribute to format specific parts of the date and time. By default, al
 ### `time-zone`
 Set a specific time zone. If not provided, the user's local time zone will be used.
 
+Example: `time-zone="America/New_York"`. [List of time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+
 ### `locale`
 Set a specific locale for the date and time display. If not provided, the user's locale will be used.
+
+Example: `locale="fr"`. [List of locales](https://github.com/date-fns/date-fns/tree/main/src/locale)
 
 ### `hour12`
 Set this attribute to `true` to use a 12-hour clock format. If not provided, the user's format will be used.
