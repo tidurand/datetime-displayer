@@ -1,10 +1,8 @@
-// tests/dateFormatter.test.ts
 import { DISPLAY_TIME_ATTRIBUTE, SHOW_ATTRIBUTE } from '../src/attributes';
 import { buildFormatOptions } from '../src/formatter';
 
 describe('buildFormatOptions', () => {
   it('should return correct format options for given attributes', () => {
-    // Create a mock HTML element with attributes
     const element = document.createElement('div');
     element.setAttribute(DISPLAY_TIME_ATTRIBUTE, 'true');
     element.setAttribute(SHOW_ATTRIBUTE, 'year-month-day-hour-minute');

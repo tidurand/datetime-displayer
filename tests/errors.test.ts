@@ -1,4 +1,3 @@
-// tests/dateFormatter.test.ts
 import { DATE_ATTRIBUTE, DISPLAY_TIME_ATTRIBUTE, SHOW_ATTRIBUTE } from '../src/attributes';
 import { formatDateTime } from '../src/formatter';
 import { parseDateTimeAttributes } from '../src/parser';
