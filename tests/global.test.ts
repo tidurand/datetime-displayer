@@ -1,14 +1,14 @@
 // tests/dateFormatter.test.ts
 import { DATE_ATTRIBUTE, DISPLAY_TIME_ATTRIBUTE, SHOW_ATTRIBUTE } from '../src/attributes';
-import { getDateTimeAttributes } from '../src/displayer';
 import { formatDateTime } from '../src/formatter';
+import { parseDateTimeAttributes } from '../src/parser';
 
 describe('global tests', () => {
   it('should return correct format options for given attributes', () => {
     const element = document.createElement('div');
     element.setAttribute(DISPLAY_TIME_ATTRIBUTE, 'true');
 
-    const { date, locale, timeZone, hour12 } = getDateTimeAttributes(element)
+    const { date, locale, timeZone, hour12 } = parseDateTimeAttributes(element)
     const result = formatDateTime(element, date, locale, timeZone, hour12);
 
     expect(result).toEqual(new Intl.DateTimeFormat().format(Date.now()))
@@ -19,7 +19,7 @@ describe('global tests', () => {
     element.setAttribute(DISPLAY_TIME_ATTRIBUTE, 'true');
     element.setAttribute('time-zone', 'America/New_York');
 
-    const { date, locale, timeZone, hour12 } = getDateTimeAttributes(element)
+    const { date, locale, timeZone, hour12 } = parseDateTimeAttributes(element)
     const result = formatDateTime(element, date, locale, timeZone, hour12);
 
     expect(result).toEqual(new Intl.DateTimeFormat(locale, {timeZone: 'America/New_York'}).format(Date.now()))
@@ -34,7 +34,7 @@ describe('global tests', () => {
     element.setAttribute('format-hour', '2-digit');
     element.setAttribute('format-minute', '2-digit');
 
-    const { date, locale, timeZone, hour12 } = getDateTimeAttributes(element)
+    const { date, locale, timeZone, hour12 } = parseDateTimeAttributes(element)
     const result = formatDateTime(element, date, locale, timeZone, hour12);
 
     const options: Intl.DateTimeFormatOptions = {
