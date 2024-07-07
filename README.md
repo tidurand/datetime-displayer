@@ -8,7 +8,6 @@ To install and use this package, include the following script in your Webflow pr
 ```html
 <script defer src="https://cdn.jsdelivr.net/npm/@tidurand/datetime-displayer@0.1.0/index.js"></script>
 ```
-Replace path/to/datetime-displayer.js with the actual path to the script file.
 
 ## Usage
 
@@ -26,9 +25,9 @@ To use this package, add the required attributes to the HTML elements where you 
 Add this attribute to the elements where you want to display the date and time.
 
 ### `date`
-Use this attribute if you want to display a specific date. If not provided, the element will display the real-time date and time.
+Use this attribute if you want to display a specific date. **If not provided, the element will display the real-time date and time.**
 
-Currently, you can une only this format `YYYY-MM-DDTHH:mm:ss.sssZ`
+Currently, you can use only this format `YYYY-MM-DDTHH:mm:ss.sssZ`
 
 Examples: `date="2024-07-07T12:00:00Z"`, `date="2024-07-07"`
 
@@ -41,11 +40,13 @@ This attribute specifies which parts of the date and time to display. You can us
 - `hour`
 - `minute`
 - `second`
+  
 Example: weekday-day-hour-minute
+
 By default: year-month-day
 
 ### `format-FORMAT_OPTIONS`
-Use this attribute to format specific parts of the date and time. By default, all parts are displayed as numeric. You can specify different formats for each part:
+Use this attribute to format specific parts of the date and time. **By default, all parts are displayed as numeric.** You can specify different formats for each part:
 - `weekday`: e.g., `format-weekday="long"` (options: `narrow`, `short`, `long`)
 - `year`: e.g., `format-year="numeric"` (options: `numeric`, `2-digit`)
 - `month`: e.g., `format-month="long"` (options: `numeric`, `2-digit`, `narrow`, `short`, `long`)
